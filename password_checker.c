@@ -3,8 +3,28 @@
 #include <string.h>
 #include <ctype.h>
 #include "password.h"
+void intro_screen() {
+    system("cls"); 
+
+    printf("===============================================================\n");
+    printf("                    PASSWORD CHECKER PROJECT                   \n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf(" Project Name : Password Strength Checker in C\n");
+    printf(" Created By   : Parth Singh\n");
+    printf(" SAP ID       : 590021885\n");
+    printf(" Batch        : B - 9\n");
+    printf(" Year         : 2025\n");
+    printf(" Submitted To : Pankaj Badoni Sir\n");
+    printf(" College      : UPES Dehradun\n");
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf(" Press Enter to continue...\n");
+    printf("...................................................................\n");
+    getchar(); 
+    getchar(); 
+}
 
 int main() {
+     intro_screen(); 
     char choice[16];
     char pwd[512];
     int score;
@@ -30,7 +50,8 @@ int main() {
             print_result(pwd, score);
             append_history(pwd, score);
 
-        } else if (choice[0] == '2') {
+        }
+         else if (choice[0] == '2') {
             f = fopen("input.txt", "r");
             if (!f) {
                 printf("Could not open input.txt\n");
@@ -44,15 +65,15 @@ int main() {
                 append_history(pwd, score);
             }
             fclose(f);
-
-        } else if (choice[0] == '3') {
+        }
+         else if (choice[0] == '3') {
             show_history();
-
-        } else if (choice[0] == '4') {
+        }
+         else if (choice[0] == '4') {
             printf("Exiting program.\n");
             break;
-
-        } else {
+        } 
+        else {
             printf("Invalid choice.\n");
         }
     }
