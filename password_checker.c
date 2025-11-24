@@ -25,7 +25,7 @@ void intro_screen() {
 
 int main() {
      intro_screen(); 
-    char choice[16];
+    char choice[16];         // local variable to store user choice
     char pwd[512];
     int score;
     FILE *f;
@@ -34,9 +34,9 @@ int main() {
 
     while (1) {
         printf("\nMenu:\n");
-        printf("1. Check password (manual)\n");
-        printf("2. Check passwords from file (input.txt)\n");
-        printf("3. Show history (history.txt)\n");
+        printf("1. Check password (manual)\n");               // user types password manually
+        printf("2. Check passwords from file (input.txt)\n"); // program reads passwords from input.txt
+        printf("3. Show history (history.txt)\n");            // shows previously checked passwords
         printf("4. Exit\n");
         printf("Enter choice: ");
 
@@ -51,18 +51,18 @@ int main() {
             append_history(pwd, score);
 
         }
-         else if (choice[0] == '2') {
-            f = fopen("input.txt", "r");
+         else if (choice[0] == '2') {          // to check multiple passwords from file
+            f = fopen("input.txt", "r");         // open file in read mode
             if (!f) {
                 printf("Could not open input.txt\n");
-                continue;
+                continue;                         // skips back to menu
             }
             while (fgets(pwd, sizeof(pwd), f)) {
-                trim_newline(pwd);
+                trim_newline(pwd);               // remove newline character at the end
                 if (strlen(pwd) == 0) continue;
-                score = evaluate_password(pwd);
-                print_result(pwd, score);
-                append_history(pwd, score);
+                score = evaluate_password(pwd);    // calculate password score
+                print_result(pwd, score);         // dipslay strength result
+                append_history(pwd, score);       // save to history file
             }
             fclose(f);
         }
@@ -70,8 +70,10 @@ int main() {
             show_history();
         }
          else if (choice[0] == '4') {
-            printf("Exiting program.\n");
-            break;
+           printf("\n--------------------------------------\n");
+    printf(" Thank you for using my password checker!\n");
+    printf("--------------------------------------\n");
+    break;
         } 
         else {
             printf("Invalid choice.\n");
